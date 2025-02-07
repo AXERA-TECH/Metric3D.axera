@@ -1,0 +1,2 @@
+export CUDA_VISIBLE_DEVICES=7
+python export_onnx.py metric3d_vit_small

@@ -1,0 +1,19 @@
+torch == 2.4.0
+torchvision == 0.19.0
+opencv-python
+numpy == 1.23.1
+Pillow
+DateTime
+matplotlib
+plyfile
+HTML4Vision
+timm
+tensorboardX
+imgaug
+iopath
+imagecorruptions
+mmcv
+fire
+onnx
+onnxsim
+onnxruntime
