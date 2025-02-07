@@ -7,7 +7,7 @@ Metric3D v2 DEMO on Axera
 ## 支持平台
 
 - [x] AX650N
-- [] AX630C
+- [ ] AX630C
 
 ## 模型转换
 
