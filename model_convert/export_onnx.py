@@ -31,7 +31,7 @@ class Metric3DExportModel(torch.nn.Module):
         return image
 
     def forward(self, image):
-        image = self.normalize_image(image)
+        # image = self.normalize_image(image)
         with torch.no_grad():
             pred_depth, confidence, output_dict = self.meta_arch.inference(
                 {"input": image}
@@ -134,6 +134,21 @@ def modify_onnx_output(input_model_path, output_model_path,
     
     # 添加新的输出
     model.graph.output.append(new_output_value_info)
+    
+    # 删除目标节点之后的所有节点
+    # 首先收集需要保留的节点
+    nodes_to_keep = []
+    for node in model.graph.node:
+        if node.name == new_output_node_name:
+            nodes_to_keep.append(node)
+            break
+        nodes_to_keep.append(node)
+    
+    # 清空图中的所有节点
+    del model.graph.node[:]
+    
+    # 将需要保留的节点重新添加到图中
+    model.graph.node.extend(nodes_to_keep)
     
     # 保存修改后的模型
     onnx.save(model, output_model_path)

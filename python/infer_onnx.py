@@ -41,8 +41,8 @@ def infer(img: str, model: str, viz: bool = False):
     orig_h, orig_w = image.shape[:2]
     image = cv2.resize(image, (1064,616) )
     
-    mean = np.array([0,0,0],dtype=np.float32).reshape(1,1,3)
-    std = np.array([1,1,1],dtype=np.float32).reshape(1,1,3)
+    mean = np.array([123.675, 116.28, 103.53],dtype=np.float32).reshape(1,1,3)
+    std = np.array([58.395, 57.12, 57.375],dtype=np.float32).reshape(1,1,3)
 
     image = (image-mean)/std 
     image = image.transpose(2,0,1)

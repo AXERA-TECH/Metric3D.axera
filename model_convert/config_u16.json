@@ -7,19 +7,27 @@
         "tensor_name": "DEFAULT",
         "calibration_dataset": "calib-cocotest2017.tar",
         "calibration_size": 32,
-        "calibration_mean": [0, 0 , 0 ],
-        "calibration_std": [1.0, 1.0 , 1.0]
+        "calibration_mean": [123.675, 116.28, 103.53],
+        "calibration_std": [58.395, 57.12, 57.375]
       }
     ],
     "calibration_method": "Percentile",
     "precision_analysis": true,
-    "precision_analysis_method": "PerLayer",
+    "precision_analysis_method": "EndToEnd",
     "layer_configs":[
       {
         "start_tensor_names": ["DEFAULT"],
         "end_tensor_names": ["DEFAULT"],   
         "data_type": "U16"
-    }
+      },
+      {
+        "layer_name": "/depth_model/decoder/Pad",
+        "data_type": "FP32"
+      },
+      {
+        "layer_name": "/depth_model/decoder/Softmax_1",
+        "data_type": "S16"
+      }
     ]
   },
   "input_processors": [
